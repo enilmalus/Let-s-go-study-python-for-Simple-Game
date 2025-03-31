@@ -11,13 +11,12 @@ dice = [i for i in range(1,7)]
 result = random.choices(dice, k=5)
 Count = Counter(result)
 
-
 for i in result:
     print(i, end=" ")
 
-Rresult = sorted(result)
+Rresult = set(result)
 # 判断顺子
-if Rresult == [1,2,3,4,5] or Rresult == [2,3,4,5,6]:
+if any({x, x+1, x+2}.issubset(Rresult) for x in result):
     print("顺子")
 
 # 判断葫芦
@@ -29,7 +28,7 @@ elif Count.most_common(1)[0][1] == 2 and Count.most_common(2)[1][1] == 2:
     print("两对")
 
 else:
-    print("高牌")
+    print("其他")
 
 
 """
